@@ -8,9 +8,9 @@ rlist = list(r)
 # ['ぜんこくNo.', 'ガラルNo.', 'ヨロイ島No.', 'カンムリNo.', '名前', 'フォルム', '名前(フォルム)', '英語名', 'タイプ1', 'タイプ2', 'HP', '攻撃', '防御', '特攻', '特防', '素早さ', 'とくせい1', 'とくせい2', '夢特性']
 
 csvmove_file = open("./技データリスト.csv", "r", encoding="utf_8", errors="", newline="")
-m = csv.reader(csvmove_file, delimiter=",", doublequote=True, lineterminator="\r\n", quotechar='"', skipinitialspace=True)
+m = csv.reader(csvmove_file, delimiter=",", doublequote=True, lineterminator="\                                                                                                                            r\n", quotechar='"', skipinitialspace=True)
 movelist = list(m)
-
+# ['', '名前', 'タイプ', '分類', '威力', 'ダイマックス', '命中', 'PP', '直接', '守る', '対象', '説明']
 
 def search(word):
     for i in rlist:
@@ -70,5 +70,43 @@ def damagecal(poke1, move, poke2):
     mov = searchmove(move)
     st2 = search(poke2)
 
+    # エラー時の例外処理
+    if st1 == -1 or mov == -1 or st2 == -1:
+        return -1
+    
+    T11 = st1[8]
+    T12 = st1[9]
+    HP1 = int(st1[10])
+    A1 = int(st1[11])
+    B1 = int(st1[12])
+    C1 = int(st1[13])
+    D1 = int(st1[14])
 
-print(searchmove('アームハンマー'))
+    MT = mov[2]
+    MB = mov[3]
+    MD = int(mov[4])
+
+    T21 = st2[8]
+    T22 = st2[9]
+    HP2 = int(st2[10])
+    A2 = int(st2[11])
+    B2 = int(st2[12])
+    C2 = int(st2[13])
+    D2 = int(st2[14])
+
+    if T11 == MT or T12 == MT:
+        typex = 1.5
+    else:
+        typex = 1.0
+    
+    if MB == "物理":
+        reault1 = int(int(22 * MD * (A1 + 52) / (B2 + 20)) / 50 + 2) * typex * typecal(MT, T21) * typecal(MT, T22)
+    elif MB == "特殊":
+        reault1 = int(int(22 * MD * (C1 + 52) / (D2 + 20)) / 50 + 2) * typex * typecal(MT, T21) * typecal(MT, T22)
+    else:
+        return "この技は変化技です"
+        
+    print(reault1)
+
+# damagecal("カミツルギ", "スマートホーン", "ウツロイド")
+damagecal("ムゲンダイナ", "かえんほうしゃ", "イシツブテ")
