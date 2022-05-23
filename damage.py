@@ -100,13 +100,29 @@ def damagecal(poke1, move, poke2):
         typex = 1.0
     
     if MB == "物理":
-        reault1 = int(int(22 * MD * (A1 + 52) / (B2 + 20)) / 50 + 2) * typex * typecal(MT, T21) * typecal(MT, T22)
+        result1 = int(int(int(22 * MD * (A1 + 52) / (B2 + 20)) / 50 + 2) * typex * typecal(MT, T21) * typecal(MT, T22))
+        result2 = int(int(int(22 * MD * (A1 + 52) / (B2 + 52)) / 50 + 2) * typex * typecal(MT, T21) * typecal(MT, T22))
     elif MB == "特殊":
-        reault1 = int(int(22 * MD * (C1 + 52) / (D2 + 20)) / 50 + 2) * typex * typecal(MT, T21) * typecal(MT, T22)
+        result1 = int(int(int(22 * MD * (C1 + 52) / (D2 + 20)) / 50 + 2) * typex * typecal(MT, T21) * typecal(MT, T22))
+        result2 = int(int(int(22 * MD * (C1 + 52) / (D2 + 52)) / 50 + 2) * typex * typecal(MT, T21) * typecal(MT, T22))
     else:
         return "この技は変化技です"
-        
-    print(reault1)
+    
+    # none HP+75
+    print(result1)
+    print('{:.1%}'.format(math.floor(result1/(HP2+75) * 10 ** 3) / (10 ** 3)))
 
-# damagecal("カミツルギ", "スマートホーン", "ウツロイド")
-# damagecal("ムゲンダイナ", "かえんほうしゃ", "イシツブテ")
+    # HP HP+107
+    print(result1)
+    print('{:.1%}'.format(math.floor(result1/(HP2+107) * 10 ** 3) / (10 ** 3)))
+
+    # B or D HP+75
+    print(result2)
+    print('{:.1%}'.format(math.floor(result2/(HP2+75) * 10 ** 3) / (10 ** 3)))
+
+    # HP and B or D HP+107
+    print(result2)
+    print('{:.1%}'.format(math.floor(result2/(HP2+107) * 10 ** 3) / (10 ** 3)))    
+
+
+damagecal("カミツルギ", "リーフブレード", "ムゲンダイナ")
