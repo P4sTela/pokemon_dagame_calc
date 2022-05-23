@@ -8,7 +8,7 @@ rlist = list(r)
 # ['ぜんこくNo.', 'ガラルNo.', 'ヨロイ島No.', 'カンムリNo.', '名前', 'フォルム', '名前(フォルム)', '英語名', 'タイプ1', 'タイプ2', 'HP', '攻撃', '防御', '特攻', '特防', '素早さ', 'とくせい1', 'とくせい2', '夢特性']
 
 csvmove_file = open("./技データリスト.csv", "r", encoding="utf_8", errors="", newline="")
-m = csv.reader(csvmove_file, delimiter=",", doublequote=True, lineterminator="\                                                                                                                            r\n", quotechar='"', skipinitialspace=True)
+m = csv.reader(csvmove_file, delimiter=",", doublequote=True, lineterminator="\r\n", quotechar='"', skipinitialspace=True)
 movelist = list(m)
 # ['', '名前', 'タイプ', '分類', '威力', 'ダイマックス', '命中', 'PP', '直接', '守る', '対象', '説明']
 
@@ -109,4 +109,4 @@ def damagecal(poke1, move, poke2):
     print(reault1)
 
 # damagecal("カミツルギ", "スマートホーン", "ウツロイド")
-damagecal("ムゲンダイナ", "かえんほうしゃ", "イシツブテ")
+# damagecal("ムゲンダイナ", "かえんほうしゃ", "イシツブテ")
